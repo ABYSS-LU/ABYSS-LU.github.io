@@ -12,10 +12,7 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="site-identity" href="{{ '/' | relative_url }}" aria-label="{{ profile.name }} — Home">
-          <span class="monogram">ML</span>
-          <span class="site-name">{{ profile.name }}</span>
-        </a>
+        <a class="site-name" href="{{ '/' | relative_url }}">{{ profile.name }}</a>
         <nav aria-label="Main navigation">
           <a href="#about">About</a>
           {% if profile.news.size > 0 %}<a href="#news">News</a>{% endif %}
@@ -28,19 +25,12 @@
 
     <main class="container">
       <section class="hero" id="about">
-        <div class="portrait-column">
-          <div class="portrait-frame">
-            <img class="avatar" src="{{ profile.avatar | relative_url }}" alt="Portrait of {{ profile.name }}">
-          </div>
-          <p class="portrait-caption"><span></span>{{ profile.location }}</p>
-        </div>
+        <img class="avatar" src="{{ profile.avatar | relative_url }}" alt="Portrait of {{ profile.name }}">
         <div class="intro">
-          <p class="eyebrow"><span>Researcher profile</span></p>
+          <p class="eyebrow">Hello, I am</p>
           <h1>{{ profile.name }}{% if profile.name_cn %}<span>{{ profile.name_cn }}</span>{% endif %}</h1>
-          <div class="role-block">
-            <p class="headline">{{ profile.headline }}</p>
-            <p class="affiliation">{{ profile.affiliation }}</p>
-          </div>
+          <p class="headline">{{ profile.headline }}</p>
+          <p class="affiliation">{{ profile.affiliation }}{% if profile.location %} · {{ profile.location }}{% endif %}</p>
           <div class="bio">{{ profile.bio | markdownify }}</div>
 
           {% if profile.research_interests.size > 0 %}
@@ -50,19 +40,19 @@
           {% endif %}
 
           <div class="profile-links">
-            {% if profile.links.email != "" %}<a class="primary-link" href="mailto:{{ profile.links.email }}"><span aria-hidden="true">✉</span>Email</a>{% endif %}
-            {% if profile.links.github != "" %}<a href="{{ profile.links.github }}"><span aria-hidden="true">⌘</span>GitHub</a>{% endif %}
-            {% if profile.links.scholar != "" %}<a href="{{ profile.links.scholar }}"><span aria-hidden="true">◈</span>Google Scholar</a>{% endif %}
-            {% if profile.links.linkedin != "" %}<a href="{{ profile.links.linkedin }}"><span aria-hidden="true">in</span>LinkedIn</a>{% endif %}
-            {% if profile.links.orcid != "" %}<a href="{{ profile.links.orcid }}"><span aria-hidden="true">iD</span>ORCID</a>{% endif %}
-            {% if profile.links.cv != "" %}<a href="{{ profile.links.cv | relative_url }}"><span aria-hidden="true">↓</span>CV</a>{% endif %}
+            {% if profile.links.email != "" %}<a href="mailto:{{ profile.links.email }}">Email</a>{% endif %}
+            {% if profile.links.github != "" %}<a href="{{ profile.links.github }}">GitHub</a>{% endif %}
+            {% if profile.links.scholar != "" %}<a href="{{ profile.links.scholar }}">Google Scholar</a>{% endif %}
+            {% if profile.links.linkedin != "" %}<a href="{{ profile.links.linkedin }}">LinkedIn</a>{% endif %}
+            {% if profile.links.orcid != "" %}<a href="{{ profile.links.orcid }}">ORCID</a>{% endif %}
+            {% if profile.links.cv != "" %}<a href="{{ profile.links.cv | relative_url }}">CV</a>{% endif %}
           </div>
         </div>
       </section>
 
       {% if profile.news.size > 0 %}
       <section class="content-section" id="news">
-        <div class="section-title"><span aria-hidden="true"></span><h2>News</h2></div>
+        <h2>News</h2>
         <div class="news-list">
           {% for item in profile.news %}
           <div class="news-item"><time>{{ item.date }}</time><p>{{ item.text }}</p></div>
@@ -74,7 +64,7 @@
       {% if profile.publications.size > 0 %}
       <section class="content-section" id="publications">
         <div class="section-heading">
-          <div class="section-title"><span aria-hidden="true"></span><h2>Selected Publications</h2></div>
+          <h2>Selected Publications</h2>
           {% if profile.links.scholar != "" %}<a href="{{ profile.links.scholar }}">Full list ↗</a>{% endif %}
         </div>
         <ol class="publication-list">
@@ -96,7 +86,7 @@
 
       {% if profile.projects.size > 0 %}
       <section class="content-section" id="projects">
-        <div class="section-title"><span aria-hidden="true"></span><h2>Projects</h2></div>
+        <h2>Projects</h2>
         <div class="card-grid">
           {% for project in profile.projects %}
           <article class="card">
@@ -117,7 +107,7 @@
 
       {% if profile.education.size > 0 or profile.experience.size > 0 %}
       <section class="content-section" id="education">
-        <div class="section-title"><span aria-hidden="true"></span><h2>Education &amp; Experience</h2></div>
+        <h2>Education &amp; Experience</h2>
         <div class="two-columns">
           {% if profile.education.size > 0 %}
           <div>
@@ -151,7 +141,7 @@
 
       {% if profile.awards.size > 0 or profile.service.size > 0 %}
       <section class="content-section" id="awards">
-        <div class="section-title"><span aria-hidden="true"></span><h2>Awards &amp; Service</h2></div>
+        <h2>Awards &amp; Service</h2>
         <div class="two-columns compact">
           {% if profile.awards.size > 0 %}
           <div>
