@@ -1,0 +1,63 @@
+# ============================================================
+# Personal information for the homepage.
+# Keep the indentation unchanged. Enclose text containing ':' in quotes.
+# ============================================================
+
+name: "Meijun Lu"
+name_cn: "逯美君"
+headline: "Ph.D. Student in Computer Science"
+affiliation: "TELOS, Peking University"
+location: "Beijing, China"
+avatar: "/assets/images/meijun-lu.png"
+
+bio: >-
+  I am a Ph.D. student at [TELOS](https://telos.top/) in the School of
+  Computer Science at Peking University. I am jointly advised by
+  [Prof. Yingwei Luo](https://cs.pku.edu.cn/info/1092/1797.htm),
+  [Prof. Xiaolin Wang](https://cs.pku.edu.cn/info/1083/1703.htm), and
+  [Assistant Prof. Diyu Zhou](https://zhou-diyu.github.io/). My research
+  interests lie broadly in machine learning systems and AI infrastructure.
+  Prior to joining Peking University, I received my bachelor's degree in
+  Computer Science and Technology from Tianjin University.
+
+research_interests:
+  - Machine Learning Systems
+  - AI Infrastructure
+
+# Leave a value empty ("") to hide that link automatically.
+links:
+  email: "2601112091@stu.pku.edu.cn"
+  github: "https://github.com/ABYSS-LU"
+  scholar: ""
+  linkedin: ""
+  orcid: ""
+  cv: ""
+
+news: []
+
+education:
+  - institution: "Peking University"
+    degree: "Ph.D. in Computer Science"
+    period: "2026 – Present"
+    location: "Beijing, China"
+    description: >-
+      Advised by Prof. Yingwei Luo, Prof. Xiaolin Wang, and Assistant Prof.
+      Diyu Zhou.
+  - institution: "Tianjin University"
+    degree: "B.S. in Computer Science and Technology"
+    period: "2022 – 2026"
+    location: "Tianjin, China"
+    description: ""
+
+experience: []
+
+publications: []
+
+projects: []
+
+awards: []
+
+service: []
+
+footer_note: "Last updated: September 2026"
+

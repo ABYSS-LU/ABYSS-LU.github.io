@@ -1,0 +1,17 @@
+title: Personal Academic Homepage
+description: A personal academic homepage hosted with GitHub Pages.
+lang: en
+timezone: Asia/Shanghai
+
+# If this repository is named <username>.github.io, keep baseurl empty.
+# If it is published as <username>.github.io/<repository>, use /<repository>.
+baseurl: ""
+url: ""
+
+markdown: kramdown
+permalink: pretty
+exclude:
+  - README.md
+  - LICENSE
+  - jekyll-theme-WuK.gemspec
+

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+  {% assign profile = site.data.profile %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ profile.bio | strip_newlines | escape }}">
+    <meta name="color-scheme" content="light dark">
+    <title>{{ profile.name }}{% if profile.name_cn %} · {{ profile.name_cn }}{% endif %}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/academic.css' | relative_url }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="site-name" href="{{ '/' | relative_url }}">{{ profile.name }}</a>
+        <nav aria-label="Main navigation">
+          <a href="#about">About</a>
+          {% if profile.news.size > 0 %}<a href="#news">News</a>{% endif %}
+          {% if profile.publications.size > 0 %}<a href="#publications">Publications</a>{% endif %}
+          {% if profile.projects.size > 0 %}<a href="#projects">Projects</a>{% endif %}
+          {% if profile.education.size > 0 %}<a href="#education">Experience</a>{% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero" id="about">
+        <img class="avatar" src="{{ profile.avatar | relative_url }}" alt="Portrait of {{ profile.name }}">
+        <div class="intro">
+          <p class="eyebrow">Hello, I am</p>
+          <h1>{{ profile.name }}{% if profile.name_cn %}<span>{{ profile.name_cn }}</span>{% endif %}</h1>
+          <p class="headline">{{ profile.headline }}</p>
+          <p class="affiliation">{{ profile.affiliation }}{% if profile.location %} · {{ profile.location }}{% endif %}</p>
+          <div class="bio">{{ profile.bio | markdownify }}</div>
+
+          {% if profile.research_interests.size > 0 %}
+          <div class="interests" aria-label="Research interests">
+            {% for interest in profile.research_interests %}<span>{{ interest }}</span>{% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="profile-links">
+            {% if profile.links.email != "" %}<a href="mailto:{{ profile.links.email }}">Email</a>{% endif %}
+            {% if profile.links.github != "" %}<a href="{{ profile.links.github }}">GitHub</a>{% endif %}
+            {% if profile.links.scholar != "" %}<a href="{{ profile.links.scholar }}">Google Scholar</a>{% endif %}
+            {% if profile.links.linkedin != "" %}<a href="{{ profile.links.linkedin }}">LinkedIn</a>{% endif %}
+            {% if profile.links.orcid != "" %}<a href="{{ profile.links.orcid }}">ORCID</a>{% endif %}
+            {% if profile.links.cv != "" %}<a href="{{ profile.links.cv | relative_url }}">CV</a>{% endif %}
+          </div>
+        </div>
+      </section>
+
+      {% if profile.news.size > 0 %}
+      <section class="content-section" id="news">
+        <h2>News</h2>
+        <div class="news-list">
+          {% for item in profile.news %}
+          <div class="news-item"><time>{{ item.date }}</time><p>{{ item.text }}</p></div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if profile.publications.size > 0 %}
+      <section class="content-section" id="publications">
+        <div class="section-heading">
+          <h2>Selected Publications</h2>
+          {% if profile.links.scholar != "" %}<a href="{{ profile.links.scholar }}">Full list ↗</a>{% endif %}
+        </div>
+        <ol class="publication-list">
+          {% for publication in profile.publications %}
+          <li>
+            <h3>{{ publication.title }}</h3>
+            <p class="authors">{{ publication.authors }}</p>
+            <p class="venue"><em>{{ publication.venue }}</em>, {{ publication.year }}{% if publication.note != "" %} · <strong>{{ publication.note }}</strong>{% endif %}</p>
+            <div class="item-links">
+              {% if publication.paper != "" %}<a href="{{ publication.paper }}">Paper</a>{% endif %}
+              {% if publication.code != "" %}<a href="{{ publication.code }}">Code</a>{% endif %}
+              {% if publication.project != "" %}<a href="{{ publication.project }}">Project</a>{% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endif %}
+
+      {% if profile.projects.size > 0 %}
+      <section class="content-section" id="projects">
+        <h2>Projects</h2>
+        <div class="card-grid">
+          {% for project in profile.projects %}
+          <article class="card">
+            <div class="card-title"><h3>{{ project.name }}</h3><span>{{ project.period }}</span></div>
+            <p>{{ project.description }}</p>
+            {% if project.tags.size > 0 %}
+            <div class="tags">{% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+            {% endif %}
+            <div class="item-links">
+              {% if project.github != "" %}<a href="{{ project.github }}">GitHub</a>{% endif %}
+              {% if project.website != "" %}<a href="{{ project.website }}">Website</a>{% endif %}
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if profile.education.size > 0 or profile.experience.size > 0 %}
+      <section class="content-section" id="education">
+        <h2>Education &amp; Experience</h2>
+        <div class="two-columns">
+          {% if profile.education.size > 0 %}
+          <div>
+            <h3 class="column-label">Education</h3>
+            {% for item in profile.education %}
+            <article class="timeline-item">
+              <span class="period">{{ item.period }}</span>
+              <h3>{{ item.institution }}</h3>
+              <p class="role">{{ item.degree }}{% if item.location %} · {{ item.location }}{% endif %}</p>
+              {% if item.description != "" %}<p>{{ item.description }}</p>{% endif %}
+            </article>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if profile.experience.size > 0 %}
+          <div>
+            <h3 class="column-label">Experience</h3>
+            {% for item in profile.experience %}
+            <article class="timeline-item">
+              <span class="period">{{ item.period }}</span>
+              <h3>{{ item.organization }}</h3>
+              <p class="role">{{ item.role }}{% if item.location %} · {{ item.location }}{% endif %}</p>
+              {% if item.description != "" %}<p>{{ item.description }}</p>{% endif %}
+            </article>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if profile.awards.size > 0 or profile.service.size > 0 %}
+      <section class="content-section" id="awards">
+        <h2>Awards &amp; Service</h2>
+        <div class="two-columns compact">
+          {% if profile.awards.size > 0 %}
+          <div>
+            <h3 class="column-label">Awards</h3>
+            {% for item in profile.awards %}
+            <div class="compact-item"><span>{{ item.year }}</span><p><strong>{{ item.title }}</strong><br>{{ item.organization }}</p></div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if profile.service.size > 0 %}
+          <div>
+            <h3 class="column-label">Academic Service</h3>
+            {% for item in profile.service %}
+            <div class="compact-item"><span>{{ item.years }}</span><p><strong>{{ item.role }}</strong><br>{{ item.organization }}</p></div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </section>
+      {% endif %}
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© {{ site.time | date: '%Y' }} {{ profile.name }}. {{ profile.footer_note }}</p>
+        <p class="credit">Built with GitHub Pages. Theme structure adapted from <a href="https://github.com/wu-kan/jekyll-theme-WuK">jekyll-theme-WuK</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>
